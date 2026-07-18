@@ -77,7 +77,31 @@
         are version-controlled with full history.</li>
   </ul>
 
-  <h2>6. Incident response</h2>
+  <h2>6. Change management</h2>
+  <ul>
+    <li>All application and server-side code is version-controlled (Git) with full history;
+        every production change is a tracked commit that can be rolled back.</li>
+    <li>Releases follow a defined path: server-side functions and database migrations deploy
+        only through the platform's CLI tooling; iOS releases are built, signed, and distributed
+        exclusively through Apple's App Store pipeline, which adds Apple's own review gate.</li>
+    <li>Changes are manually verified end-to-end against the live system before release.
+        As a single-operator company there is no second-person code review; version control,
+        platform gates, and post-deploy verification serve as the compensating controls.</li>
+  </ul>
+
+  <h2>7. Logging &amp; monitoring</h2>
+  <ul>
+    <li>Every server-side request is logged by the platform (function invocations with status
+        codes, database logs, authentication events), retained by the provider.</li>
+    <li>Third-party processors provide their own audit surfaces reviewed by the principal:
+        Plaid API and item logs, Twilio messaging logs, RevenueCat event history.</li>
+    <li>Webhook failures and bank-connection errors surface actively (error events from
+        providers trigger user-facing re-link prompts). Formal real-time security alerting is
+        not currently deployed; provider dashboards are reviewed routinely and the incident
+        response process below governs anything discovered.</li>
+  </ul>
+
+  <h2>8. Incident response</h2>
   <ul>
     <li>Any suspected exposure of user data triggers: immediate credential/secret rotation,
         revocation of affected Plaid items, assessment of scope via provider logs, and notification
@@ -86,7 +110,7 @@
         Reports are acknowledged within 2 business days.</li>
   </ul>
 
-  <h2>7. Review</h2>
+  <h2>9. Review</h2>
   <p>This policy is reviewed at least annually, and whenever the architecture or vendor set
      changes materially.</p>
 </main>
