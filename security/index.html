@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Information Security Policy — Monte</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site"><a href="../">Monte <span>· Your personal CFO</span></a></header>
+<main>
+  <h1>Information Security Policy</h1>
+  <p class="date">Christian Wilson LLC · Effective July 18, 2026 · Reviewed annually</p>
+
+  <p>This policy documents how Christian Wilson LLC ("the Company"), operator of the Monte iOS
+     application, protects user data and the systems that process it. The Company is a
+     single-operator organization; the controls below reflect that structure honestly rather than
+     describing processes that don't exist.</p>
+
+  <h2>1. Scope &amp; asset inventory</h2>
+  <ul>
+    <li><strong>Production infrastructure:</strong> fully managed platform services — Supabase
+        (database, authentication, serverless functions; hosted on AWS), Plaid (bank connectivity),
+        Twilio (SMS), RevenueCat and Apple (subscriptions), Anthropic (AI processing), GitHub Pages
+        (static website). The Company operates no server instances, containers, or network
+        equipment of its own.</li>
+    <li><strong>Corporate endpoints:</strong> one macOS development machine, operated solely by the
+        Company's principal. There are no employees, contractors, or additional devices.</li>
+    <li>This complete inventory is re-reviewed whenever a service is added or removed.</li>
+  </ul>
+
+  <h2>2. Data handling</h2>
+  <ul>
+    <li>Bank credentials are never transmitted to or stored on Company systems; they are entered
+        directly with Plaid. The Company stores Plaid access tokens server-side only.</li>
+    <li>User financial data is stored in Supabase, encrypted at rest and in transit (TLS), with
+        row-level security scoping every record to its owning user.</li>
+    <li>Documents users share in chat are processed transiently to extract values; the files
+        themselves are not persisted.</li>
+    <li>Users can export their data and permanently delete their account (and all associated data)
+        from within the app.</li>
+    <li>The Company does not sell user data and does not share it with third parties for
+        marketing.</li>
+  </ul>
+
+  <h2>3. Access control</h2>
+  <ul>
+    <li>Production access is limited to the Company's principal via per-service accounts;
+        there are no shared credentials.</li>
+    <li>Multi-factor authentication is enabled on all critical accounts: cloud infrastructure,
+        source control, banking connectivity, messaging, payments, domain registrar, and the
+        Apple developer account.</li>
+    <li>API secrets and service keys live in the platform's encrypted secret store — never in
+        source code, the repository, or client applications. Server-only keys (database service
+        role, AI provider, messaging) are readable only by server-side functions.</li>
+    <li>Webhook endpoints authenticate their callers (signature verification or shared-secret
+        headers); unauthenticated requests are rejected.</li>
+  </ul>
+
+  <h2>4. Endpoint security</h2>
+  <ul>
+    <li>The development machine runs current macOS with automatic security updates, full-disk
+        encryption (FileVault), Gatekeeper and XProtect malware protections, screen lock, and
+        remote-locate/wipe (Find My).</li>
+    <li>As a single-operator company, the principal's device is the corporate device; the controls
+        above apply to it in full.</li>
+  </ul>
+
+  <h2>5. Vulnerability management</h2>
+  <ul>
+    <li>Production infrastructure patching and network security are managed by the platform
+        providers (Supabase/AWS), whose own programs include continuous scanning and compliance
+        certifications.</li>
+    <li>Application dependencies are kept current through routine development updates; the
+        operating system and toolchain apply security updates automatically.</li>
+    <li>Server-side code enforces authentication and per-user scoping on every request; changes
+        are version-controlled with full history.</li>
+  </ul>
+
+  <h2>6. Incident response</h2>
+  <ul>
+    <li>Any suspected exposure of user data triggers: immediate credential/secret rotation,
+        revocation of affected Plaid items, assessment of scope via provider logs, and notification
+        of affected users without undue delay.</li>
+    <li>Security contact: <a href="mailto:zachwilson106@gmail.com">zachwilson106@gmail.com</a>.
+        Reports are acknowledged within 2 business days.</li>
+  </ul>
+
+  <h2>7. Review</h2>
+  <p>This policy is reviewed at least annually, and whenever the architecture or vendor set
+     changes materially.</p>
+</main>
+<footer>
+  <a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="../sms/">SMS</a><a href="../faq/">Support</a>
+  <p style="margin-top:10px">Monte is a product of Christian Wilson LLC.</p>
+</footer>
+</body>
+</html>
