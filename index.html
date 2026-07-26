@@ -6,15 +6,12 @@
 <title>Monte — Your personal CFO</title>
 <meta name="description" content="Monte connects your banks, plans your cash flow, and texts you exactly what to do next. Your personal CFO, in your pocket.">
 <link rel="icon" type="image/png" href="/logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     background: #101010;
-    font-family: "Inter", -apple-system, system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
     color: #16161a;
     padding: 14px;
   }
@@ -47,11 +44,10 @@
   /* Hero */
   .hero { text-align: center; padding: 96px 24px 0; }
   .hero h1 {
-    font-family: "Instrument Serif", Georgia, serif;
-    font-weight: 400;
-    font-size: clamp(46px, 7.4vw, 92px);
-    line-height: 1.06;
-    letter-spacing: -0.015em;
+    font-weight: 700;
+    font-size: clamp(42px, 6.6vw, 84px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
   }
   .hero p {
     color: #8a8a8a; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.5;
@@ -75,42 +71,61 @@
   }
   .phone {
     position: relative; margin: 170px auto 0;
-    width: 340px; height: 640px;
-    background: #111; border-radius: 56px;
-    padding: 12px;
+    width: 372px; height: 760px;
+    background: #0d0d0f; border-radius: 68px;
+    padding: 9px;
     transform: rotate(-7deg) translateY(28px);
-    box-shadow: 0 40px 80px rgba(0,0,0,.28);
+    box-shadow: 0 40px 80px rgba(0,0,0,.28), inset 0 0 0 2px #2a2a2e;
   }
   .screen {
-    background: #fff; border-radius: 44px; height: 100%; overflow: hidden;
-    padding: 18px 16px 0; position: relative;
+    border-radius: 60px; height: 100%; overflow: hidden;
+    position: relative;
+    background:
+      radial-gradient(70% 50% at 20% 10%, #e8ecf7, transparent 70%),
+      radial-gradient(60% 45% at 85% 30%, #f3e7ef, transparent 70%),
+      radial-gradient(70% 50% at 50% 90%, #e6eef0, transparent 70%),
+      #eef0f4;
+    padding: 0 14px;
   }
-  .statusbar {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px; font-weight: 600; padding: 2px 12px 10px;
-  }
-  .notch {
+  .island {
     position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-    width: 96px; height: 26px; background: #111; border-radius: 14px;
+    width: 112px; height: 32px; background: #0d0d0f; border-radius: 20px;
   }
-  .chat { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; }
-  .bubble {
-    background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 16px;
-    padding: 12px 14px; font-size: 13.5px; line-height: 1.45;
-    display: flex; gap: 9px; align-items: flex-start;
-    box-shadow: 0 4px 14px rgba(0,0,0,.05);
+  .msgheader {
+    text-align: center; padding: 54px 0 10px;
+    border-bottom: 1px solid rgba(0,0,0,.06);
   }
-  .bubble .who {
-    flex: none; width: 22px; height: 22px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9px; font-weight: 700; color: #fff; background: #b9b4ab; margin-top: 1px;
+  .msgheader .avatar {
+    width: 44px; height: 44px; border-radius: 50%; background: #16161a;
+    display: inline-flex; align-items: center; justify-content: center;
   }
-  .bubble.monte .who { background: #16161a; }
-  .bubble .who img { width: 13px; height: 13px; filter: invert(1); }
-  .brief { background: #fafaf8; }
-  .brief ul { list-style: none; margin-top: 6px; }
-  .brief li { margin-top: 4px; }
-  .brief li::before { content: "•  "; color: #8a8a8a; }
+  .msgheader .avatar img { width: 24px; height: 24px; filter: invert(1); }
+  .msgheader .name { font-size: 12px; margin-top: 5px; color: #16161a; }
+  .thread { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; }
+  .imsg {
+    max-width: 82%; padding: 11px 14px; border-radius: 20px;
+    font-size: 14.5px; line-height: 1.4; letter-spacing: -0.01em;
+  }
+  .sent {
+    align-self: flex-end;
+    background: linear-gradient(180deg, #3d9bff, #0a84ff);
+    color: #fff; border-bottom-right-radius: 6px;
+  }
+  .delivered {
+    align-self: flex-end; font-size: 10.5px; color: #9a9aa2; margin: -4px 4px 0 0;
+  }
+  .glass {
+    align-self: flex-start;
+    background: rgba(255,255,255,.5);
+    -webkit-backdrop-filter: blur(18px) saturate(1.6);
+    backdrop-filter: blur(18px) saturate(1.6);
+    border: 1px solid rgba(255,255,255,.75);
+    box-shadow: 0 8px 24px rgba(30,40,80,.10), inset 0 1px 0 rgba(255,255,255,.9);
+    color: #16161a; border-bottom-left-radius: 6px;
+  }
+  .glass ul { list-style: none; margin: 6px 0 0; padding: 0; }
+  .glass li { margin-top: 3px; }
+  .glass li::before { content: "•  "; color: #8a8a8a; }
 
   /* Product strip */
   .strip {
@@ -118,16 +133,16 @@
     max-width: 940px; margin: 0 auto; padding: 84px 32px;
   }
   .strip h3 {
-    font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
-    font-size: 26px; margin-bottom: 10px;
+    font-weight: 700; letter-spacing: -0.02em;
+    font-size: 22px; margin-bottom: 10px;
   }
   .strip p { color: #6f6f6f; font-size: 14.5px; line-height: 1.6; }
 
   /* Get section */
   .get { text-align: center; padding: 0 24px 90px; }
   .get h2 {
-    font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
-    font-size: clamp(30px, 4vw, 44px); letter-spacing: -0.01em;
+    font-weight: 700;
+    font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.025em;
   }
   .get p { color: #8a8a8a; margin-top: 14px; font-size: 16px; }
   .get a { color: #16161a; }
@@ -168,30 +183,30 @@
   </header>
 
   <section class="hero">
-    <h1>Managing money is hard.<br>Meet your personal CFO.</h1>
+    <h1>Managing money is hard.<br>Hire a CFO.</h1>
     <p>Monte connects your banks, plans your cash flow, and texts you exactly what to do next — no spreadsheets, no stress.</p>
     <a class="btn" href="#get">Get Monte</a>
 
     <div class="stage">
       <div class="cloud"></div>
       <div class="phone">
-        <div class="notch"></div>
         <div class="screen">
-          <div class="statusbar"><span>9:41</span><span>&#9679;&#9679;&#9679;</span></div>
-          <div class="chat">
-            <div class="bubble"><span class="who">ZW</span>
-              <span>Can I afford a $300 purchase right now?</span></div>
-            <div class="bubble monte"><span class="who"><img src="/logo.png" alt=""></span>
-              <span>Yes — but barely. You have $412 safe to spend until payday on the 1st. Spend it, and dinner out waits until the paycheck lands.</span></div>
-            <div class="bubble monte brief"><span class="who"><img src="/logo.png" alt=""></span>
-              <span>Morning brief:
-                <ul>
-                  <li>$1,240 safe to spend — about $62 a day</li>
-                  <li>Rent clears Friday; you're covered</li>
-                  <li>Groceries at 78% with 9 days left</li>
-                  <li>Next dollar: your cash cushion — $180 to your first gem</li>
-                </ul>
-              </span></div>
+          <div class="island"></div>
+          <div class="msgheader">
+            <span class="avatar"><img src="/logo.png" alt=""></span>
+            <div class="name">Monte</div>
+          </div>
+          <div class="thread">
+            <div class="imsg sent">How much did I spend on food in May?</div>
+            <div class="delivered">Delivered</div>
+            <div class="imsg glass">Food in May: $438 total.
+              <ul>
+                <li>Groceries — $312</li>
+                <li>Dining out — $126</li>
+              </ul>
+              That's $54 less than your typical month. Want me to set June's food budget to match?</div>
+            <div class="imsg sent">Yes — do it.</div>
+            <div class="imsg glass">Done. Food is $450 for June — I'll text you at 80%.</div>
           </div>
         </div>
       </div>
