@@ -4,31 +4,231 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Monte — Your personal CFO</title>
+<meta name="description" content="Monte connects your banks, plans your cash flow, and texts you exactly what to do next. Your personal CFO, in your pocket.">
 <link rel="icon" type="image/png" href="/logo.png">
-<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #101010;
+    font-family: "Inter", -apple-system, system-ui, sans-serif;
+    color: #16161a;
+    padding: 14px;
+  }
+  .page {
+    background: #f5f3ef;
+    border-radius: 18px;
+    overflow: hidden;
+    min-height: calc(100vh - 28px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 44px 0;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #16161a; }
+  .brand img { width: 26px; height: 26px; }
+  .brand span { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
+  nav { display: flex; gap: 34px; }
+  nav a { text-decoration: none; color: #16161a; font-size: 15px; }
+  nav a:hover { opacity: 0.6; }
+  .btn {
+    display: inline-block; background: #16161a; color: #fff; text-decoration: none;
+    font-size: 15px; font-weight: 500; padding: 12px 26px; border-radius: 12px;
+  }
+  .btn:hover { background: #000; }
+
+  /* Hero */
+  .hero { text-align: center; padding: 96px 24px 0; }
+  .hero h1 {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(46px, 7.4vw, 92px);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+  }
+  .hero p {
+    color: #8a8a8a; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.5;
+    max-width: 420px; margin: 34px auto 0;
+  }
+  .hero .btn { margin-top: 30px; padding: 14px 32px; border-radius: 13px; font-size: 16px; }
+
+  /* Cloud + phone */
+  .stage { position: relative; margin-top: 48px; height: 560px; overflow: hidden; }
+  .cloud {
+    position: absolute; left: 50%; top: 90px; transform: translateX(-50%);
+    width: 640px; height: 460px; pointer-events: none;
+    background:
+      radial-gradient(42% 34% at 50% 22%, rgba(245,140,95,.55), transparent 70%),
+      radial-gradient(34% 28% at 30% 38%, rgba(248,181,140,.5), transparent 70%),
+      radial-gradient(36% 30% at 70% 40%, rgba(244,150,110,.42), transparent 70%),
+      radial-gradient(50% 42% at 50% 72%, rgba(238,140,196,.5), transparent 72%),
+      radial-gradient(40% 34% at 38% 86%, rgba(232,120,190,.45), transparent 72%);
+    filter: blur(14px);
+  }
+  .phone {
+    position: relative; margin: 40px auto 0;
+    width: 340px; height: 640px;
+    background: #111; border-radius: 56px;
+    padding: 12px;
+    transform: rotate(-7deg) translateY(28px);
+    box-shadow: 0 40px 80px rgba(0,0,0,.28);
+  }
+  .screen {
+    background: #fff; border-radius: 44px; height: 100%; overflow: hidden;
+    padding: 18px 16px 0; position: relative;
+  }
+  .statusbar {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; font-weight: 600; padding: 2px 12px 10px;
+  }
+  .notch {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 96px; height: 26px; background: #111; border-radius: 14px;
+  }
+  .chat { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; }
+  .bubble {
+    background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 16px;
+    padding: 12px 14px; font-size: 13.5px; line-height: 1.45;
+    display: flex; gap: 9px; align-items: flex-start;
+    box-shadow: 0 4px 14px rgba(0,0,0,.05);
+  }
+  .bubble .who {
+    flex: none; width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; color: #fff; background: #b9b4ab; margin-top: 1px;
+  }
+  .bubble.monte .who { background: #16161a; }
+  .bubble .who img { width: 13px; height: 13px; filter: invert(1); }
+  .brief { background: #fafaf8; }
+  .brief ul { list-style: none; margin-top: 6px; }
+  .brief li { margin-top: 4px; }
+  .brief li::before { content: "•  "; color: #8a8a8a; }
+
+  /* Product strip */
+  .strip {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+    max-width: 940px; margin: 0 auto; padding: 84px 32px;
+  }
+  .strip h3 {
+    font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
+    font-size: 26px; margin-bottom: 10px;
+  }
+  .strip p { color: #6f6f6f; font-size: 14.5px; line-height: 1.6; }
+
+  /* Get section */
+  .get { text-align: center; padding: 0 24px 90px; }
+  .get h2 {
+    font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
+    font-size: clamp(30px, 4vw, 44px); letter-spacing: -0.01em;
+  }
+  .get p { color: #8a8a8a; margin-top: 14px; font-size: 16px; }
+  .get a { color: #16161a; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid rgba(0,0,0,.08);
+    padding: 26px 44px 30px;
+    display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; justify-content: space-between;
+    font-size: 13px; color: #8a8a8a;
+  }
+  footer .links { display: flex; flex-wrap: wrap; gap: 22px; }
+  footer a { color: #6f6f6f; text-decoration: none; }
+  footer a:hover { color: #16161a; }
+
+  @media (max-width: 760px) {
+    header { padding: 20px 22px 0; }
+    nav { display: none; }
+    .hero { padding-top: 64px; }
+    .stage { height: 470px; }
+    .phone { width: 300px; height: 580px; }
+    .strip { grid-template-columns: 1fr; gap: 34px; padding: 64px 28px; }
+    footer { padding: 22px 22px 26px; justify-content: center; text-align: center; }
+  }
+</style>
 </head>
 <body>
-<header class="site"><a href="./">Monte <span>· Your personal CFO</span></a></header>
-<main>
-  <h1>Monte</h1>
-  <p class="date">Your personal CFO, in your pocket.</p>
-  <p>Monte is a premium personal-finance app for iPhone. Connect your accounts, get a zero-based
-     budget built for you, climb the Wealth Ladder one step at a time, and ask Monte anything
-     about your money — it answers from your real numbers.</p>
-  <div class="card">
-    <p style="margin-bottom:0"><strong>Legal &amp; support</strong></p>
-  </div>
-  <ul>
-    <li><a href="privacy/">Privacy Policy</a></li>
-    <li><a href="terms/">Terms of Service</a></li>
-    <li><a href="sms/">SMS Terms &amp; Conditions</a></li>
-    <li><a href="faq/">FAQ &amp; Support</a></li>
-    <li><a href="licenses/">Open Source Licenses</a></li>
-  </ul>
-</main>
-<footer>
-  <a href="privacy/">Privacy</a><a href="terms/">Terms</a><a href="sms/">SMS</a><a href="faq/">Support</a>
-  <p style="margin-top:10px">Monte is a product of Christian Wilson LLC.</p>
-</footer>
+<div class="page">
+
+  <header>
+    <a class="brand" href="./"><img src="/logo.png" alt=""><span>Monte</span></a>
+    <nav>
+      <a href="#product">Product</a>
+      <a href="faq/">FAQ</a>
+      <a href="security/">Security</a>
+    </nav>
+    <a class="btn" href="#get">Get the app</a>
+  </header>
+
+  <section class="hero">
+    <h1>Managing money is hard.<br>Meet your personal CFO.</h1>
+    <p>Monte connects your banks, plans your cash flow, and texts you exactly what to do next — no spreadsheets, no stress.</p>
+    <a class="btn" href="#get">Get Monte</a>
+
+    <div class="stage">
+      <div class="cloud"></div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="statusbar"><span>9:41</span><span>&#9679;&#9679;&#9679;</span></div>
+          <div class="chat">
+            <div class="bubble"><span class="who">ZW</span>
+              <span>Can I afford a $300 purchase right now?</span></div>
+            <div class="bubble monte"><span class="who"><img src="/logo.png" alt=""></span>
+              <span>Yes — but barely. You have $412 safe to spend until payday on the 1st. Spend it, and dinner out waits until the paycheck lands.</span></div>
+            <div class="bubble monte brief"><span class="who"><img src="/logo.png" alt=""></span>
+              <span>Morning brief:
+                <ul>
+                  <li>$1,240 safe to spend — about $62 a day</li>
+                  <li>Rent clears Friday; you're covered</li>
+                  <li>Groceries at 78% with 9 days left</li>
+                  <li>Next dollar: your cash cushion — $180 to your first gem</li>
+                </ul>
+              </span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="strip" id="product">
+    <div>
+      <h3>It texts you first.</h3>
+      <p>A morning brief with what you can safely spend, and alerts the moment something needs you — a bill jump, a budget about to blow, a paycheck landing. Reply by text; Monte answers from your real numbers.</p>
+    </div>
+    <div>
+      <h3>It plans your cash.</h3>
+      <p>Every bill on its real date, a year of cash flow ahead, and a warning before the dip — so the car payment on the 13th never collides with a good intention.</p>
+    </div>
+    <div>
+      <h3>It orders your dollars.</h3>
+      <p>One standing order for your next dollar — cash cushion, then the debt snowball, then wealth. Monte shows its math, tracks the streak, and hands you a gem when a step falls.</p>
+    </div>
+  </section>
+
+  <section class="get" id="get">
+    <h2>Coming soon to the App Store.</h2>
+    <p>Questions or early access — <a href="mailto:zachwilson106@gmail.com">zachwilson106@gmail.com</a></p>
+  </section>
+
+  <footer>
+    <div class="links">
+      <a href="privacy/">Privacy</a>
+      <a href="terms/">Terms</a>
+      <a href="sms/">SMS Terms</a>
+      <a href="faq/">Support</a>
+      <a href="security/">Security</a>
+      <a href="licenses/">Licenses</a>
+    </div>
+    <p>Monte is a product of Christian Wilson LLC.</p>
+  </footer>
+
+</div>
 </body>
 </html>
