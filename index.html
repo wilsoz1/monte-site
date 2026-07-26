@@ -54,6 +54,15 @@
     max-width: 420px; margin: 34px auto 0;
   }
   .hero .btn { margin-top: 30px; padding: 14px 32px; border-radius: 13px; font-size: 16px; }
+  .appstore {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #000; color: #fff; text-decoration: none;
+    border: 1px solid #a6a6a6; border-radius: 12px;
+    padding: 9px 18px 10px; margin-top: 30px;
+  }
+  .appstore .lines { text-align: left; line-height: 1.15; }
+  .appstore .small { font-size: 10.5px; letter-spacing: 0.02em; }
+  .appstore .big { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
 
   /* Cloud + phone */
   .stage { position: relative; margin-top: 24px; height: 1040px; overflow: hidden; }
@@ -229,7 +238,10 @@
   <section class="hero">
     <h1>Managing money is hard.<br>Hire a CFO.</h1>
     <p>Monte connects your banks, plans your cash flow, and texts you exactly what to do next — no spreadsheets, no stress.</p>
-    <a class="btn" href="#get">Get Monte</a>
+    <a class="appstore" href="#get" aria-label="Download on the App Store (coming soon)">
+      <svg width="26" height="31" viewBox="0 0 24 29" fill="#fff"><path d="M19.9 15.3c0-3.1 2.5-4.6 2.6-4.7-1.4-2.1-3.7-2.4-4.5-2.4-1.9-.2-3.7 1.1-4.7 1.1-1 0-2.5-1.1-4.1-1.1-2.1 0-4 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.6 12.5 1 1.5 2.3 3.2 3.9 3.1 1.6-.1 2.2-1 4.1-1s2.4 1 4.1 1c1.7 0 2.8-1.5 3.8-3 1.2-1.7 1.7-3.4 1.7-3.5-.1-.1-3.4-1.3-3.4-5.1zM16.8 5.9c.9-1 1.4-2.4 1.3-3.9-1.2.1-2.7.8-3.6 1.9-.8.9-1.5 2.4-1.3 3.8 1.4.1 2.7-.7 3.6-1.8z"/></svg>
+      <span class="lines"><span class="small">Coming soon on the</span><br><span class="big">App Store</span></span>
+    </a>
 
     <div class="stage">
       <div class="cloud"></div>
