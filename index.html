@@ -56,7 +56,7 @@
   .hero .btn { margin-top: 30px; padding: 14px 32px; border-radius: 13px; font-size: 16px; }
 
   /* Cloud + phone */
-  .stage { position: relative; margin-top: 24px; height: 1000px; overflow: hidden; }
+  .stage { position: relative; margin-top: 24px; height: 1040px; overflow: hidden; }
   .cloud {
     position: absolute; left: 50%; top: 10px; transform: translateX(-50%);
     width: 860px; height: 620px; pointer-events: none;
@@ -71,72 +71,100 @@
   }
   .phone {
     position: relative; margin: 150px auto 0;
-    width: 372px; height: 780px;
-    background: #0d0d0f; border-radius: 68px;
-    padding: 9px;
-    transform: rotate(-7deg);
+    width: 384px; height: 812px;
+    background: linear-gradient(145deg, #e8e8ec, #c4c4cb 55%, #dcdce1);
+    border-radius: 64px; padding: 4px;
+    transform: rotate(7deg);
     transform-origin: top center;
-    box-shadow: 0 40px 80px rgba(0,0,0,.28), inset 0 0 0 2px #2a2a2e;
+    box-shadow: 0 44px 90px rgba(0,0,0,.30);
   }
+  .sbtn { position: absolute; background: #b7b7bf; border-radius: 3px; }
+  .sbtn.action { left: -3px; top: 176px; width: 4px; height: 26px; }
+  .sbtn.volup  { left: -3px; top: 226px; width: 4px; height: 48px; }
+  .sbtn.voldn  { left: -3px; top: 284px; width: 4px; height: 48px; }
+  .sbtn.power  { right: -3px; top: 250px; width: 4px; height: 80px; }
+  .bezel { background: #0b0b0c; border-radius: 60px; padding: 8px; height: 100%; }
   .screen {
-    border-radius: 60px; height: 100%; overflow: hidden;
-    position: relative;
-    background:
-      radial-gradient(70% 50% at 20% 10%, #e8ecf7, transparent 70%),
-      radial-gradient(60% 45% at 85% 30%, #f3e7ef, transparent 70%),
-      radial-gradient(70% 50% at 50% 90%, #e6eef0, transparent 70%),
-      #eef0f4;
-    padding: 0 14px;
+    background: #fff; border-radius: 52px; height: 100%; overflow: hidden;
+    position: relative; display: flex; flex-direction: column;
   }
   .island {
     position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-    width: 112px; height: 32px; background: #0d0d0f; border-radius: 20px;
+    width: 108px; height: 30px; background: #0b0b0c; border-radius: 18px; z-index: 2;
   }
   .statusrow {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 17px 12px 0; font-size: 15px; font-weight: 600; color: #16161a;
+    padding: 16px 26px 0; font-size: 15px; font-weight: 600; color: #111;
   }
   .statusrow .icons { display: flex; align-items: center; gap: 6px; }
   .statusrow svg { display: block; }
   .msgheader {
-    position: relative; text-align: center; padding: 10px 0;
-    border-bottom: 1px solid rgba(0,0,0,.06);
+    display: flex; align-items: flex-end; padding: 2px 10px 8px;
+    border-bottom: 0.5px solid rgba(0,0,0,.12);
   }
-  .msgheader .back {
-    position: absolute; left: 2px; top: 50%; transform: translateY(-50%);
-    color: #0a84ff; display: flex; align-items: center;
+  .back { display: flex; align-items: center; gap: 5px; width: 74px; }
+  .unread {
+    background: #e9e9eb; color: #0a84ff; font-size: 13px; font-weight: 600;
+    padding: 2px 9px; border-radius: 12px;
   }
-  .msgheader .avatar {
-    width: 44px; height: 44px; border-radius: 50%; background: #16161a;
+  .contact { flex: 1; text-align: center; }
+  .contact .avatar {
+    width: 42px; height: 42px; border-radius: 50%; background: #16161a;
     display: inline-flex; align-items: center; justify-content: center;
   }
-  .msgheader .avatar img { width: 24px; height: 24px; filter: invert(1); }
-  .msgheader .name { font-size: 12px; margin-top: 5px; color: #16161a; }
-  .thread { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; text-align: left; }
+  .contact .avatar img { width: 22px; height: 22px; filter: invert(1); }
+  .contact .name {
+    font-size: 11px; color: #111; margin-top: 3px;
+    display: flex; align-items: center; justify-content: center; gap: 2px;
+  }
+  .contact .name svg { opacity: 0.35; }
+  .hspace { width: 74px; }
+  .thread {
+    flex: 1; overflow: hidden; text-align: left;
+    display: flex; flex-direction: column; gap: 7px;
+    padding: 8px 12px 4px; font-size: 12.5px;
+  }
+  .day { text-align: center; font-size: 10px; color: #8e8e93; margin-top: 2px; }
+  .day b { font-weight: 600; }
   .imsg {
-    max-width: 82%; padding: 11px 14px; border-radius: 20px;
-    font-size: 14.5px; line-height: 1.4; letter-spacing: -0.01em;
+    max-width: 80%; padding: 8px 12px; border-radius: 18px;
+    line-height: 1.38; letter-spacing: -0.01em; white-space: pre-line;
   }
+  .recv { background: #e9e9eb; color: #111; align-self: flex-start; border-bottom-left-radius: 5px; }
   .sent {
-    align-self: flex-end;
-    background: linear-gradient(180deg, #3d9bff, #0a84ff);
-    color: #fff; border-bottom-right-radius: 6px;
+    background: linear-gradient(180deg, #3d9bff, #0a84ff); color: #fff;
+    align-self: flex-end; border-bottom-right-radius: 5px;
   }
-  .delivered {
-    align-self: flex-end; font-size: 10.5px; color: #9a9aa2; margin: -4px 4px 0 0;
+  .inputbar { display: flex; align-items: center; gap: 8px; padding: 4px 10px 8px; }
+  .plusbtn {
+    width: 30px; height: 30px; border-radius: 50%; background: #e9e9eb;
+    color: #7c7c82; font-size: 19px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
   }
-  .glass {
-    align-self: flex-start;
-    background: rgba(255,255,255,.5);
-    -webkit-backdrop-filter: blur(18px) saturate(1.6);
-    backdrop-filter: blur(18px) saturate(1.6);
-    border: 1px solid rgba(255,255,255,.75);
-    box-shadow: 0 8px 24px rgba(30,40,80,.10), inset 0 1px 0 rgba(255,255,255,.9);
-    color: #16161a; border-bottom-left-radius: 6px;
+  .field {
+    flex: 1; position: relative; border: 1px solid #d6d6db; border-radius: 16px;
+    padding: 6px 30px 6px 12px; font-size: 13.5px; color: #c1c1c6;
   }
-  .glass ul { list-style: none; margin: 6px 0 0; padding: 0; }
-  .glass li { margin-top: 3px; }
-  .glass li::before { content: "•  "; color: #8a8a8a; }
+  .field svg { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); }
+  .kb { background: #d1d3d9; padding: 0 3px 4px; }
+  .qt { display: flex; align-items: stretch; padding: 7px 0; }
+  .qt span {
+    flex: 1; text-align: center; font-size: 14px; color: #111;
+    border-right: 1px solid rgba(0,0,0,.12);
+  }
+  .qt span:last-child { border-right: none; }
+  .krow { display: flex; justify-content: center; gap: 5px; margin-bottom: 7px; padding: 0 2px; }
+  .key {
+    flex: 1; max-width: 33px; height: 39px; background: #fff; border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.32); color: #111;
+    display: flex; align-items: center; justify-content: center; font-size: 16.5px;
+  }
+  .key.mod { max-width: 44px; background: #aeb3be; }
+  .key.k123 { max-width: 46px; background: #aeb3be; font-size: 13px; }
+  .key.face { max-width: 46px; background: #aeb3be; }
+  .key.space { max-width: none; flex: 4; }
+  .key.ret { max-width: 60px; background: #aeb3be; }
+  .kbfoot { display: flex; justify-content: space-between; padding: 4px 30px 2px; }
 
   /* Product strip */
   .strip {
@@ -174,14 +202,14 @@
     nav { display: none; }
     .hero { padding-top: 64px; }
     .stage { height: 820px; }
-    .phone { margin-top: 110px; transform: rotate(-4deg) scale(0.8); }
+    .phone { margin-top: 110px; transform: rotate(4deg) scale(0.8); }
     .cloud { width: 620px; height: 470px; }
     .strip { grid-template-columns: 1fr; gap: 34px; padding: 64px 28px; }
     footer { padding: 22px 22px 26px; justify-content: center; text-align: center; }
   }
   @media (max-width: 420px) {
     .stage { height: 730px; }
-    .phone { transform: rotate(-3deg) scale(0.7); margin-top: 80px; }
+    .phone { transform: rotate(3deg) scale(0.7); margin-top: 80px; }
   }
 </style>
 </head>
@@ -206,33 +234,76 @@
     <div class="stage">
       <div class="cloud"></div>
       <div class="phone">
+        <span class="sbtn action"></span><span class="sbtn volup"></span><span class="sbtn voldn"></span><span class="sbtn power"></span>
+        <div class="bezel">
         <div class="screen">
           <div class="island"></div>
           <div class="statusrow">
-            <span>9:41</span>
+            <span>9:51</span>
             <span class="icons">
-              <svg width="18" height="11" viewBox="0 0 18 11" fill="#16161a"><rect x="0" y="7" width="3" height="4" rx="0.8"/><rect x="5" y="5" width="3" height="6" rx="0.8"/><rect x="10" y="2.5" width="3" height="8.5" rx="0.8"/><rect x="15" y="0" width="3" height="11" rx="0.8"/></svg>
-              <svg width="16" height="11" viewBox="0 0 16 11" fill="#16161a"><path d="M8 9.4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" transform="translate(0,-1.9)"/><path d="M8 6.2c1.3 0 2.5.5 3.4 1.4l-1.2 1.2A3.2 3.2 0 0 0 8 8a3.2 3.2 0 0 0-2.2.8L4.6 7.6A4.8 4.8 0 0 1 8 6.2z"/><path d="M8 3c2.2 0 4.2.9 5.7 2.3l-1.2 1.2A6.4 6.4 0 0 0 8 4.6a6.4 6.4 0 0 0-4.5 1.9L2.3 5.3A8 8 0 0 1 8 3z" transform="translate(0,-1.6)"/></svg>
-              <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="#16161a" stroke-opacity="0.4"/><rect x="2" y="2" width="15" height="8" rx="2" fill="#16161a"/><path d="M23 4v4c1-.3 1.6-1 1.6-2S24 4.3 23 4z" fill="#16161a" fill-opacity="0.4"/></svg>
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#111"><rect x="0" y="7" width="3" height="4" rx="0.8"/><rect x="5" y="5" width="3" height="6" rx="0.8"/><rect x="10" y="2.5" width="3" height="8.5" rx="0.8"/><rect x="15" y="0" width="3" height="11" rx="0.8"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 12" fill="#111"><path d="M8 9.6a1.6 1.6 0 1 1 0 3.2 1.6 1.6 0 0 1 0-3.2z" transform="translate(0,-1.4)"/><path d="M8 5.8c1.5 0 2.9.6 3.9 1.6l-1.3 1.3A3.7 3.7 0 0 0 8 7.6c-1 0-1.9.4-2.6 1.1L4.1 7.4a5.5 5.5 0 0 1 3.9-1.6z"/><path d="M8 2.2c2.5 0 4.8 1 6.5 2.7l-1.3 1.3A7.3 7.3 0 0 0 8 4.1c-2 0-3.8.8-5.2 2.1L1.5 4.9A9.2 9.2 0 0 1 8 2.2z"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="#111" stroke-opacity="0.4"/><rect x="2" y="2" width="14" height="8" rx="2" fill="#111"/><path d="M23 4v4c1-.3 1.6-1 1.6-2S24 4.3 23 4z" fill="#111" fill-opacity="0.4"/></svg>
             </span>
           </div>
           <div class="msgheader">
-            <span class="back"><svg width="12" height="20" viewBox="0 0 12 20" fill="none"><path d="M10 2 3 10l7 8" stroke="#0a84ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="avatar"><img src="/logo.png" alt=""></span>
-            <div class="name">Monte</div>
+            <span class="back">
+              <svg width="11" height="19" viewBox="0 0 12 20" fill="none"><path d="M10 2 3 10l7 8" stroke="#0a84ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="unread">12</span>
+            </span>
+            <span class="contact">
+              <span class="avatar"><img src="/logo.png" alt=""></span>
+              <span class="name">Monte <svg width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1l4 4-4 4" stroke="#111" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            </span>
+            <span class="hspace"></span>
           </div>
           <div class="thread">
-            <div class="imsg sent">How much did I spend on food in May?</div>
-            <div class="delivered">Delivered</div>
-            <div class="imsg glass">Food in May: $438 total.
-              <ul>
-                <li>Groceries — $312</li>
-                <li>Dining out — $126</li>
-              </ul>
-              That's $54 less than your typical month. Want me to set June's food budget to match?</div>
-            <div class="imsg sent">Yes — do it.</div>
-            <div class="imsg glass">Done. Food is $450 for June — I'll text you at 80%.</div>
+            <div class="day"><b>Yesterday</b> 8:00 PM</div>
+            <div class="imsg recv">−$55.45 (in the last 24 hours)
+Transactions:
+−$12.12 at Venmo
+−$24.99 at Netflix
+−$18.34 at Amazon</div>
+            <div class="day"><b>Today</b> 8:00 PM</div>
+            <div class="imsg recv">−$133.85 (in the last 24 hours)
+Transactions:
+−$23.97 at Target
+−$82.41 at Trader Joe's
+−$27.47 at DoorDash</div>
+            <div class="imsg sent">What subscriptions do I have?</div>
+            <div class="imsg recv">4 subscriptions — $58.96/mo:
+Netflix $24.99
+Spotify $11.99
+iCloud+ $9.99
+Hulu $11.99</div>
           </div>
+          <div class="inputbar">
+            <span class="plusbtn">+</span>
+            <span class="field">Text Message · SMS
+              <svg width="11" height="16" viewBox="0 0 12 18" fill="#c1c1c6"><rect x="3.5" y="0" width="5" height="10" rx="2.5"/><path d="M1 8a5 5 0 0 0 10 0h-1.4a3.6 3.6 0 0 1-7.2 0z"/><rect x="5.3" y="13" width="1.4" height="3"/></svg>
+            </span>
+          </div>
+          <div class="kb">
+            <div class="qt"><span>I</span><span>The</span><span>I'm</span></div>
+            <div class="krow"><span class="key">Q</span><span class="key">W</span><span class="key">E</span><span class="key">R</span><span class="key">T</span><span class="key">Y</span><span class="key">U</span><span class="key">I</span><span class="key">O</span><span class="key">P</span></div>
+            <div class="krow"><span class="key">A</span><span class="key">S</span><span class="key">D</span><span class="key">F</span><span class="key">G</span><span class="key">H</span><span class="key">J</span><span class="key">K</span><span class="key">L</span></div>
+            <div class="krow">
+              <span class="key mod"><svg width="15" height="14" viewBox="0 0 16 15" fill="#111"><path d="M8 0 1 8h3.5v5h7V8H15z"/></svg></span>
+              <span class="key">Z</span><span class="key">X</span><span class="key">C</span><span class="key">V</span><span class="key">B</span><span class="key">N</span><span class="key">M</span>
+              <span class="key mod"><svg width="19" height="13" viewBox="0 0 20 14" fill="none"><path d="M6 1h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H6L1 7z" stroke="#111" stroke-width="1.3"/><path d="m9 4.5 5 5m0-5-5 5" stroke="#111" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+            </div>
+            <div class="krow">
+              <span class="key k123">123</span>
+              <span class="key face"><svg width="17" height="17" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.6" stroke="#111" stroke-width="1.3"/><circle cx="6.3" cy="7.4" r="0.9" fill="#111"/><circle cx="11.7" cy="7.4" r="0.9" fill="#111"/><path d="M5.5 11a4.4 4.4 0 0 0 7 0" stroke="#111" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+              <span class="key space"></span>
+              <span class="key ret"><svg width="15" height="13" viewBox="0 0 16 14" fill="none"><path d="M14 1v5a2 2 0 0 1-2 2H2m0 0 4-4M2 8l4 4" stroke="#111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+            <div class="kbfoot">
+              <svg width="21" height="21" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.6" stroke="#50555c" stroke-width="1.3"/><path d="M2.4 11h17.2M11 2.4c-2.6 2.3-4 5.2-4 8.6s1.4 6.3 4 8.6c2.6-2.3 4-5.2 4-8.6s-1.4-6.3-4-8.6z" stroke="#50555c" stroke-width="1.3"/></svg>
+              <svg width="15" height="21" viewBox="0 0 12 18" fill="#50555c"><rect x="3.5" y="0" width="5" height="10" rx="2.5"/><path d="M1 8a5 5 0 0 0 10 0h-1.4a3.6 3.6 0 0 1-7.2 0z"/><rect x="5.3" y="15" width="1.4" height="2"/></svg>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </div>
