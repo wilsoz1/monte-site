@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Monte — Your personal CFO</title>
 <meta name="description" content="Monte connects your banks, plans your cash flow, and texts you exactly what to do next. Your personal CFO, in your pocket.">
+<link rel="icon" type="image/svg+xml" href="/coin.svg">
 <link rel="icon" type="image/png" href="/logo.png">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,8 +31,9 @@
     padding: 26px 44px 0;
   }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #16161a; }
-  .brand img { width: 26px; height: 26px; }
-  .brand span { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
+  .brand img { width: 30px; height: 31px; }
+  .brand span { font-family: Didot, "Bodoni 72", "Playfair Display", Georgia, serif;
+    font-size: 23px; font-weight: 500; letter-spacing: 0; color: #1e2a4a; }
   nav { display: flex; gap: 34px; }
   nav a { text-decoration: none; color: #16161a; font-size: 15px; }
   nav a:hover { opacity: 0.6; }
@@ -118,10 +120,11 @@
   }
   .contact { flex: 1; text-align: center; }
   .contact .avatar {
-    width: 42px; height: 42px; border-radius: 50%; background: #16161a;
+    width: 42px; height: 42px; border-radius: 50%; background: #fff;
+    border: 1px solid rgba(0,0,0,.1);
     display: inline-flex; align-items: center; justify-content: center;
   }
-  .contact .avatar img { width: 22px; height: 22px; filter: invert(1); }
+  .contact .avatar img { width: 30px; height: 31px; }
   .contact .name {
     font-size: 11px; color: #111; margin-top: 3px;
     display: flex; align-items: center; justify-content: center; gap: 2px;
@@ -226,7 +229,7 @@
 <div class="page">
 
   <header>
-    <a class="brand" href="./"><img src="/logo.png" alt=""><span>Monte</span></a>
+    <a class="brand" href="./"><img src="/coin.svg" alt=""><span>Monte</span></a>
     <nav>
       <a href="#product">Product</a>
       <a href="faq/">FAQ</a>
@@ -264,7 +267,7 @@
               <span class="unread">12</span>
             </span>
             <span class="contact">
-              <span class="avatar"><img src="/logo.png" alt=""></span>
+              <span class="avatar"><img src="/coin.svg" alt=""></span>
               <span class="name">Monte <svg width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1l4 4-4 4" stroke="#111" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </span>
             <span class="hspace"></span>
