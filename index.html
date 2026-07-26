@@ -56,7 +56,7 @@
   .hero .btn { margin-top: 30px; padding: 14px 32px; border-radius: 13px; font-size: 16px; }
 
   /* Cloud + phone */
-  .stage { position: relative; margin-top: 24px; height: 640px; overflow: hidden; }
+  .stage { position: relative; margin-top: 24px; height: 1000px; overflow: hidden; }
   .cloud {
     position: absolute; left: 50%; top: 10px; transform: translateX(-50%);
     width: 860px; height: 620px; pointer-events: none;
@@ -70,11 +70,12 @@
     filter: blur(10px);
   }
   .phone {
-    position: relative; margin: 170px auto 0;
-    width: 372px; height: 760px;
+    position: relative; margin: 150px auto 0;
+    width: 372px; height: 780px;
     background: #0d0d0f; border-radius: 68px;
     padding: 9px;
-    transform: rotate(-7deg) translateY(28px);
+    transform: rotate(-7deg);
+    transform-origin: top center;
     box-shadow: 0 40px 80px rgba(0,0,0,.28), inset 0 0 0 2px #2a2a2e;
   }
   .screen {
@@ -91,9 +92,19 @@
     position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
     width: 112px; height: 32px; background: #0d0d0f; border-radius: 20px;
   }
+  .statusrow {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 17px 12px 0; font-size: 15px; font-weight: 600; color: #16161a;
+  }
+  .statusrow .icons { display: flex; align-items: center; gap: 6px; }
+  .statusrow svg { display: block; }
   .msgheader {
-    text-align: center; padding: 54px 0 10px;
+    position: relative; text-align: center; padding: 10px 0;
     border-bottom: 1px solid rgba(0,0,0,.06);
+  }
+  .msgheader .back {
+    position: absolute; left: 2px; top: 50%; transform: translateY(-50%);
+    color: #0a84ff; display: flex; align-items: center;
   }
   .msgheader .avatar {
     width: 44px; height: 44px; border-radius: 50%; background: #16161a;
@@ -101,7 +112,7 @@
   }
   .msgheader .avatar img { width: 24px; height: 24px; filter: invert(1); }
   .msgheader .name { font-size: 12px; margin-top: 5px; color: #16161a; }
-  .thread { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; }
+  .thread { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; text-align: left; }
   .imsg {
     max-width: 82%; padding: 11px 14px; border-radius: 20px;
     font-size: 14.5px; line-height: 1.4; letter-spacing: -0.01em;
@@ -129,8 +140,8 @@
 
   /* Product strip */
   .strip {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
-    max-width: 940px; margin: 0 auto; padding: 84px 32px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 44px 56px;
+    max-width: 880px; margin: 0 auto; padding: 84px 32px;
   }
   .strip h3 {
     font-weight: 700; letter-spacing: -0.02em;
@@ -162,10 +173,15 @@
     header { padding: 20px 22px 0; }
     nav { display: none; }
     .hero { padding-top: 64px; }
-    .stage { height: 470px; }
-    .phone { width: 300px; height: 580px; }
+    .stage { height: 820px; }
+    .phone { margin-top: 110px; transform: rotate(-7deg) scale(0.82); }
+    .cloud { width: 620px; height: 470px; }
     .strip { grid-template-columns: 1fr; gap: 34px; padding: 64px 28px; }
     footer { padding: 22px 22px 26px; justify-content: center; text-align: center; }
+  }
+  @media (max-width: 420px) {
+    .stage { height: 730px; }
+    .phone { transform: rotate(-7deg) scale(0.72); margin-top: 90px; }
   }
 </style>
 </head>
@@ -192,7 +208,16 @@
       <div class="phone">
         <div class="screen">
           <div class="island"></div>
+          <div class="statusrow">
+            <span>9:41</span>
+            <span class="icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#16161a"><rect x="0" y="7" width="3" height="4" rx="0.8"/><rect x="5" y="5" width="3" height="6" rx="0.8"/><rect x="10" y="2.5" width="3" height="8.5" rx="0.8"/><rect x="15" y="0" width="3" height="11" rx="0.8"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#16161a"><path d="M8 9.4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" transform="translate(0,-1.9)"/><path d="M8 6.2c1.3 0 2.5.5 3.4 1.4l-1.2 1.2A3.2 3.2 0 0 0 8 8a3.2 3.2 0 0 0-2.2.8L4.6 7.6A4.8 4.8 0 0 1 8 6.2z"/><path d="M8 3c2.2 0 4.2.9 5.7 2.3l-1.2 1.2A6.4 6.4 0 0 0 8 4.6a6.4 6.4 0 0 0-4.5 1.9L2.3 5.3A8 8 0 0 1 8 3z" transform="translate(0,-1.6)"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="#16161a" stroke-opacity="0.4"/><rect x="2" y="2" width="15" height="8" rx="2" fill="#16161a"/><path d="M23 4v4c1-.3 1.6-1 1.6-2S24 4.3 23 4z" fill="#16161a" fill-opacity="0.4"/></svg>
+            </span>
+          </div>
           <div class="msgheader">
+            <span class="back"><svg width="12" height="20" viewBox="0 0 12 20" fill="none"><path d="M10 2 3 10l7 8" stroke="#0a84ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span class="avatar"><img src="/logo.png" alt=""></span>
             <div class="name">Monte</div>
           </div>
@@ -215,16 +240,20 @@
 
   <section class="strip" id="product">
     <div>
-      <h3>It texts you first.</h3>
-      <p>A morning brief with what you can safely spend, and alerts the moment something needs you — a bill jump, a budget about to blow, a paycheck landing. Reply by text; Monte answers from your real numbers.</p>
+      <h3>We help you pay off debt.</h3>
+      <p>Every debt in the right order, with its real interest rate and a payoff date. Each one you kill feeds the next — and Monte hands you a gem when it dies.</p>
     </div>
     <div>
-      <h3>It plans your cash.</h3>
-      <p>Every bill on its real date, a year of cash flow ahead, and a warning before the dip — so the car payment on the 13th never collides with a good intention.</p>
+      <h3>We help you adjust your spending.</h3>
+      <p>When a category runs hot, you hear about it at 80% — not at the statement. One text back ("set food to $450") and the budget is changed.</p>
     </div>
     <div>
-      <h3>It orders your dollars.</h3>
-      <p>One standing order for your next dollar — cash cushion, then the debt snowball, then wealth. Monte shows its math, tracks the streak, and hands you a gem when a step falls.</p>
+      <h3>We stay top of mind.</h3>
+      <p>A morning brief and the occasional nudge keep your money in view, so spending never quietly drifts out of control between app opens.</p>
+    </div>
+    <div>
+      <h3>We change your relationship with money.</h3>
+      <p>From avoidance and anxiety to a standing plan: you always know what you can spend, what's coming, and where the next dollar goes.</p>
     </div>
   </section>
 
